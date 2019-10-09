@@ -2,7 +2,12 @@
     margin: 5px 8px;
 }
 .card-img-top{
-    width: 600px;
-    height: 400px;
+    max-width: 600px;
+    max-height: 400px;
     margin: 0 auto;
+}
+.clearfixCSS{
+    content: "";
+    clear: both;
+    display: table;
 }
