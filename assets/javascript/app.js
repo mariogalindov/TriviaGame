@@ -120,6 +120,15 @@ var trivia = {
             console.log(trivia.wrongAnswers)
         }
 
+    },
+    reset: function(){
+        trivia.currentQuestion=0;
+        trivia.seconds=10;
+        trivia.correctAnswers=0;
+        trivia.wrongAnswers=0;
+        trivia.unansweredQuestions=0;
+        $(".card-body").empty();
+        trivia.questionTrigger();
     }
 
 }
@@ -132,6 +141,10 @@ $(document).ready(function(){
 
     $(document).on('click','.answer-button', function(btnClick){
         trivia.click(btnClick);
+    })
+
+    $(document).on('click', '#reset', function(){
+        trivia.reset();
     })
 
 })
