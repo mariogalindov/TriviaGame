@@ -78,7 +78,7 @@ var trivia = {
         $(".card-body").html("<h2>Correct Answer</h2>");
         $("#placeholderImage").attr("src",questionsArray[trivia.currentQuestion].image);
         if(trivia.currentQuestion==questionsArray.length-1){
-            setTimeout(results,3*1000);
+            setTimeout(trivia.results,3*1000);
         } else {
             setTimeout(trivia.nextQuestion,3*1000);
         }
@@ -92,24 +92,32 @@ var trivia = {
         $("#placeholderImage").attr("src",questionsArray[trivia.currentQuestion].image);
         $("card-body").append("<h3>The correct answer was "+questionsArray[trivia.currentQuestion].correctAnswer+"</h3>");
         if(trivia.currentQuestion==questionsArray.length-1){
-            setTimeout(results,3*1000);
+            setTimeout(trivia.results,3*1000);
         } else {
             setTimeout(trivia.nextQuestion,3*1000);
         }
 
     },
     results: function(){
-        
-
+        $("#placeholderImage").attr("src", "https://i2.wp.com/img00.deviantart.net/ee54/i/2013/011/9/a/video_game_characters_from_the_80__s_and_90__s_by_aerialrocketgames-d5r6hsd.png?ssl=1");
+        $(".card-body").html("<h2>Done!</h2>");
+        $(".card-body").append("<h3>Here are your results");
+        $(".card-body").append("<h3>Correct Answers: "+trivia.correctAnswers+"</h3>");
+        $(".card-body").append("<h3>Wrong Answers: "+trivia.wrongAnswers+"</h3>")
+        $(".card-body").append("<h3>Unanswered questions: "+trivia.unansweredQuestions+"</h3>")
+        $(".card-body").append("<button id='reset'>Try Again?</button>")
     },
     click: function(btnClick){
+        clearInterval(timer);
         console.log(btnClick.target.innerText);
         if(btnClick.target.innerText===questionsArray[trivia.currentQuestion].correctAnswer){
             console.log("Correct answer!");
+            console.log(trivia.correctAnswers);
             trivia.correctGuess();
         } else {
             console.log("Wrong answer");
             trivia.wrongGuess();
+            console.log(trivia.wrongAnswers)
         }
 
     }
