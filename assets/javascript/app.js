@@ -37,11 +37,29 @@ var trivia = {
     unansweredQuestions:0,
     seconds: 10,
     questionTrigger: function(){
-        $(".card-body").html("<h3 class='card-title'>"+questionsArray[trivia.currentQuestion].question+"</h3>"); //questions[trivia.currentQuestion].question
+        timer = setInterval(trivia.countdown,1000);
+        $(".card-body").html("<h2>Tiempo restante <span id='secondsLeft'>10</span></h2>");
+        $(".card-body").append("<h3 class='card-title'>"+questionsArray[trivia.currentQuestion].question+"</h3>"); //questions[trivia.currentQuestion].question
         var answersToDisplay = questionsArray[trivia.currentQuestion].answers
         answersToDisplay.forEach(function(elem){
-            $(".card-body").append("<button class='btn btn-primary'>"+elem+"</button>")
+            $(".card-body").append("<button class='btn btn-primary answer-button'>"+elem+"</button>")
         })
+    },
+    countdown: function(){
+        trivia.seconds--;
+        $("#secondsLeft").html(trivia.seconds);
+        if(trivia.seconds<=0){
+            console.log("Se acabó el tiempo");
+            trivia.timeUp();
+        }
+    },
+    timeUp: function(){
+        clearInterval(timer);
+
+    },
+    click: function(btnClick){
+        console.log(btnClick.target.innerText);
+
     }
 
 }
@@ -50,6 +68,10 @@ $(document).ready(function(){
     $("#start").on("click", function(){
         $(".card-body").empty();
         trivia.questionTrigger();
+    })
+
+    $(document).on('click','.answer-button', function(btnClick){
+        trivia.click(btnClick);
     })
 
 })
