@@ -105,7 +105,7 @@ var trivia = {
         $(".card-body").append("<h3>Correct Answers: "+trivia.correctAnswers+"</h3>");
         $(".card-body").append("<h3>Wrong Answers: "+trivia.wrongAnswers+"</h3>")
         $(".card-body").append("<h3>Unanswered questions: "+trivia.unansweredQuestions+"</h3>")
-        $(".card-body").append("<button id='reset'>Try Again?</button>")
+        $(".card-body").append("<button id='reset' class='btn btn-primary'>Try Again?</button>")
     },
     click: function(btnClick){
         clearInterval(timer);
