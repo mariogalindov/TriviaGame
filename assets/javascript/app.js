@@ -55,10 +55,62 @@ var trivia = {
     },
     timeUp: function(){
         clearInterval(timer);
+        trivia.unansweredQuestions++;
+        $(".card-body").html("<h2>Time's up</h2>");
+        $(".card-body").append("<h3>The correct answer was "+questionsArray[trivia.currentQuestion].correctAnswer+"</h3>")
+        if(trivia.currentQuestion==questionsArray.length-1){
+            setTimeout(trivia.results,3*1000);
+        } else {
+            setTimeout(trivia.nextQuestion,3*1000);
+        }
+    },
+    nextQuestion: function(){
+        trivia.seconds = 10;
+        $("#secondsLeft").html(trivia.seconds);
+        trivia.currentQuestion++;
+        $("#placeholderImage").attr("src", "https://i2.wp.com/img00.deviantart.net/ee54/i/2013/011/9/a/video_game_characters_from_the_80__s_and_90__s_by_aerialrocketgames-d5r6hsd.png?ssl=1")
+        trivia.questionTrigger();
+    },
+    correctGuess: function(){
+        console.log("Great!");
+        clearInterval(timer);
+        trivia.correctAnswers++;
+        $(".card-body").html("<h2>Correct Answer</h2>");
+        $("#placeholderImage").attr("src",questionsArray[trivia.currentQuestion].image);
+        if(trivia.currentQuestion==questionsArray.length-1){
+            setTimeout(results,3*1000);
+        } else {
+            setTimeout(trivia.nextQuestion,3*1000);
+        }
+
+    },
+    wrongGuess: function(){
+        console.log("Bad");
+        clearInterval(timer);
+        trivia.wrongAnswers++;
+        $(".card-body").html("<h2>Wrong Answer</h2>");
+        $("#placeholderImage").attr("src",questionsArray[trivia.currentQuestion].image);
+        $("card-body").append("<h3>The correct answer was "+questionsArray[trivia.currentQuestion].correctAnswer+"</h3>");
+        if(trivia.currentQuestion==questionsArray.length-1){
+            setTimeout(results,3*1000);
+        } else {
+            setTimeout(trivia.nextQuestion,3*1000);
+        }
+
+    },
+    results: function(){
+        
 
     },
     click: function(btnClick){
         console.log(btnClick.target.innerText);
+        if(btnClick.target.innerText===questionsArray[trivia.currentQuestion].correctAnswer){
+            console.log("Correct answer!");
+            trivia.correctGuess();
+        } else {
+            console.log("Wrong answer");
+            trivia.wrongGuess();
+        }
 
     }
 
