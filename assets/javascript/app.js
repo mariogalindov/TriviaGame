@@ -58,6 +58,7 @@ var trivia = {
         trivia.unansweredQuestions++;
         $(".card-body").html("<h2>Time's up</h2>");
         $(".card-body").append("<h3>The correct answer was "+questionsArray[trivia.currentQuestion].correctAnswer+"</h3>")
+        $("#placeholderImage").attr("src",questionsArray[trivia.currentQuestion].image);
         if(trivia.currentQuestion==questionsArray.length-1){
             setTimeout(trivia.results,3*1000);
         } else {
