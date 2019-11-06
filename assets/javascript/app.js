@@ -69,7 +69,7 @@ var trivia = {
         trivia.seconds = 10;
         $("#secondsLeft").html(trivia.seconds);
         trivia.currentQuestion++;
-        $("#placeholderImage").attr("src", "https://i2.wp.com/img00.deviantart.net/ee54/i/2013/011/9/a/video_game_characters_from_the_80__s_and_90__s_by_aerialrocketgames-d5r6hsd.png?ssl=1")
+        $("#placeholderImage").attr("src", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSaLIHxcSmAn2yIApQK5x2gC9YzTVqtnTdk0QlvYhshbqSBHClU")
         trivia.questionTrigger();
     },
     correctGuess: function(){
@@ -100,7 +100,7 @@ var trivia = {
 
     },
     results: function(){
-        $("#placeholderImage").attr("src", "https://i2.wp.com/img00.deviantart.net/ee54/i/2013/011/9/a/video_game_characters_from_the_80__s_and_90__s_by_aerialrocketgames-d5r6hsd.png?ssl=1");
+        $("#placeholderImage").attr("src", "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSaLIHxcSmAn2yIApQK5x2gC9YzTVqtnTdk0QlvYhshbqSBHClU");
         $(".card-body").html("<h2>Done!</h2>");
         $(".card-body").append("<h3>Here are your results");
         $(".card-body").append("<h3>Correct Answers: "+trivia.correctAnswers+"</h3>");
